@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export default createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -46,3 +49,51 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* FIGMA */
+:root{
+    --grey-4: #121214;
+    --grey-3: #212529;
+    --grey-2: #343B41;
+    --grey-1: #868E96;
+    --grey-0: #F8F9FA;
+    --color-primary: #FF577F;
+    --color-primary-50: #FF427F;
+    --color-primary-disable: #59323F;
+    --sucess: #3FE864;
+    --negative: #E83F5B;
+
+}
+
+body{
+    background-color: #121214;
+    color: #F8F9FA;
+}
+
+h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+h3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+}
+
+
+`;
+
