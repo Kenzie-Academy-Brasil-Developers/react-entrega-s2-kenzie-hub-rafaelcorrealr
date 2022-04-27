@@ -27,6 +27,18 @@ export const ContainerForm = styled.div`
     box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
     border-radius: 3.20867px;
 
+
+    legend{
+        font-family: 'Inter';
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+
+        color: #FF577F;
+    }
 `
 
 export const Form = styled.form`

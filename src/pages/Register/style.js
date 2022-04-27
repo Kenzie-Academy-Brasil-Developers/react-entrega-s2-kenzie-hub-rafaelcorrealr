@@ -31,6 +31,18 @@ export const ContainerForm = styled.div`
 
 export const Form = styled.form`
     width:100%;
+
+    legend{
+        font-family: 'Inter';
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+
+        color: #FF577F;
+    }
 `
 export const Select = styled.select`
     /* Auto layout */   

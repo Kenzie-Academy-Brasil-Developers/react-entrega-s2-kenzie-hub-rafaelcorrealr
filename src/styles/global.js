@@ -51,20 +51,6 @@ table {
 }
 
 /* FIGMA */
-:root{
-    --grey-4: #121214;
-    --grey-3: #212529;
-    --grey-2: #343B41;
-    --grey-1: #868E96;
-    --grey-0: #F8F9FA;
-    --color-primary: #FF577F;
-    --color-primary-50: #FF427F;
-    --color-primary-disable: #59323F;
-    --sucess: #3FE864;
-    --negative: #E83F5B;
-
-}
-
 body{
     background-color: #121214;
     color: #F8F9FA;
@@ -78,12 +64,22 @@ h1{
     line-height: 28px;
 }
 
-h3{
+h2{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 24px;
+}
+
+h3{
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+
 }
 
 p{
@@ -94,6 +90,17 @@ p{
     line-height: 22px;
 }
 
+::placeholder{
+    color: #868E96;
+    font-family: 'Inter';
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
 
+    :focus{
+        color: #868E96;
+    }
+}
 `;
 

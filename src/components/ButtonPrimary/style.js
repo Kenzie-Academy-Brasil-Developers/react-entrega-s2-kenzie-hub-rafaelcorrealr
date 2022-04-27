@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonPrimary = styled.button`
+export const Container = styled.button`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -9,10 +9,10 @@ export const ButtonPrimary = styled.button`
 
     /* color-primary */
 
-    background: #FF577F;
+    background: #59323F;
     /* color-primary */
 
-    border: 1.2182px solid #FF577F;
+    border: 1.2182px solid #59323F;
     box-sizing: border-box;
     border-radius: 4.06066px;
 
@@ -27,4 +27,9 @@ export const ButtonPrimary = styled.button`
     height: 38.5px;
 
     color: #F8F9FA;
+
+    :hover{
+        background: ${(props) => props.color ? '#FF577F' : '#FF427F'};
+        border: 1.2182px solid ${(props) => props.color ? '#FF577F' : '#FF427F'};
+    }
 `

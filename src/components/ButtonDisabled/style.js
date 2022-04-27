@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonDisabled = styled.button`
+export const Container = styled.button`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -9,10 +9,10 @@ export const ButtonDisabled = styled.button`
 
     /* color-primary */
 
-    background: #868E96;
+    background: ${(props) => props.color ? '#868E96' : '#212529'};
     /* color-primary */
 
-    border: 1.2182px solid #868E96;
+    border: 1.2182px solid ${(props) => props.color ? '#868E96' : '#212529'};
     box-sizing: border-box;
     border-radius: 4.06066px;
 
@@ -23,8 +23,15 @@ export const ButtonDisabled = styled.button`
     flex-grow: 0;
     margin: 17.6477px 0px;
 
-    width: 80vw;
+    width: ${(props) => props.color ? '80vw' : ''};
     height: 38.5px;
 
     color: #F8F9FA;
+
+    
+
+    :hover{
+        background: ${(props) => props.color ? '#868E96' : '#212529'};
+        border: 1.2182px solid ${(props) => props.color ? '#868E96' : '#212529'};
+    }
 `

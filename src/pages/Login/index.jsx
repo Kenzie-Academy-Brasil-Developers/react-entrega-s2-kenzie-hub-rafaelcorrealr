@@ -5,16 +5,21 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from "react-router-dom";
 
+import api from '../../sevices/api'
 import {Container, ContainerForm, Form} from './style'
-import {Input} from '../../styles/Input'
-import {ButtonPrimary} from '../../components/ButtonPrimary/style'
-import {ButtonDisabled} from '../../components/ButtonDisabled/style'
- 
+import Input from '../../components/Input'
 
-function Login(){
+import ButtonDisabled from '../../components/ButtonDisabled'
+import ButtonPrimary from "../../components/ButtonPrimary";
+import Headline from "../../components/Headline/";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+function Login({authenticated, setAuthenticated}){
+
+    const history = useHistory()
 
     const formSchema = yup.object().shape({
-        email: yup.string().required("Email obrigatório"),
+        email: yup.string().email('Email inválido').required("Email obrigatório"),
         password: yup.string().required('Senha errada.')
     });
 
@@ -23,28 +28,45 @@ function Login(){
     resolver: yupResolver(formSchema)})
     
     const onSubmitFunction = (data) => {
-        console.log(data)
+        api
+        .post('/sessions', data)
+        .then((response) => {
+            const { token } = response.data
+            localStorage.setItem("@KenzieHUB:token", JSON.stringify(token))
+            localStorage.setItem("@KenzieHUB:user", JSON.stringify(response.data.user))
+    
+            return history.push(`/home/${response.data.user.id}`)
+        })
+        .catch((err) => console.log(err))
     }
+
     return (
         <Container>
             <div>
                 <h1>Kenzie Hub</h1>
             </div>
-
+            
             <ContainerForm>
-                <h2>Login</h2>
+                <h1>Login</h1>
                 <Form onSubmit={handleSubmit(onSubmitFunction)}>
                     <p>Email</p>
-                    <Input placeholder="Email" {...register('email')}/>
-                    {errors.email?.message}
+                    <Input
+                    placeholder="Email"
+                    register={register}
+                    name='email'/>
+                    <legend>{errors.email?.message}</legend>
                     <p>Senha</p>
-                    <Input placeholder="Senha" type='password' {...register('password')}/>
-                    {errors.password?.message}
-                    <ButtonPrimary type="submit">Entrar</ButtonPrimary>
+                    <Input
+                    placeholder="Senha"
+                    type='password'
+                    register={register}
+                    name='password'/>
+                    <legend>{errors.password?.message}</legend>
+                    <ButtonPrimary color={false}>Entrar</ButtonPrimary>
                 </Form>
 
-                <p>Ainda não possui uma conta?</p>
-                <Link to={'/register'}><ButtonDisabled>Cadastre-se</ButtonDisabled></Link>
+                <Headline>Ainda não possui uma conta?</Headline>
+                <Link to={'/register'}><ButtonDisabled color={true}>Cadastre-se</ButtonDisabled></Link>
             </ContainerForm>
         </Container>
     )
