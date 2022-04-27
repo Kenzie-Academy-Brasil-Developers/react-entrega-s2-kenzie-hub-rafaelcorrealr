@@ -86,11 +86,6 @@ function Home(authenticated, setAuthenticated){
                             </button>
                             
                         })}
-                            {/* {exemplo} */}
-                            <button onClick={() => openModalTech()}>
-                                <h3>title</h3>
-                                <Headline>status</Headline>
-                            </button>
                     </ul>
                 </ContainerList>
 
