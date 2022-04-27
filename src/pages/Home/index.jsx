@@ -39,7 +39,6 @@ function Home(authenticated, setAuthenticated){
 
     const openModalNew = () => {
         setVisibilityModalNew(true)
-        setVisibilityModalTech(true)
     }
 
     const openModalTech = () => {
@@ -77,6 +76,7 @@ function Home(authenticated, setAuthenticated){
                                 <Headline>{status}</Headline>
                             </button>
                         })}
+                            {/* {exemplo} */}
                             <button onClick={() => openModalTech()}>
                                 <h3>title</h3>
                                 <Headline>status</Headline>

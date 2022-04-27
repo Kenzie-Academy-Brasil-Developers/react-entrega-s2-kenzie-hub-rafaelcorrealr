@@ -2,7 +2,7 @@ import { Modal, Header, Form, DivBtn } from "./style"
 import ButtonPrimary from '../../../components/ButtonPrimary'
 import ButtonDisabled from "../../../components/ButtonDisabled"
 
-const ModalTech = (visibilityModalTech, setVisibilityModalTech) => {
+const ModalTech = ({visibilityModalTech, setVisibilityModalTech}) => {
 
     const exitModal = () => {
         setVisibilityModalTech(false)
