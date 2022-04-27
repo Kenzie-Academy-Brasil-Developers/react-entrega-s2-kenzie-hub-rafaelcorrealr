@@ -16,11 +16,11 @@ export const Navbar = styled.nav`
 
     button{
         margin: 0px 12px;
+        cursor: pointer;
     }
 
-    @media only screen and (max-width: 768px){
+    @media(min-width: 768px){
         justify-content: space-around;
-        flex-direction:column;
     }
 `
 
@@ -41,6 +41,18 @@ export const ContainerUser = styled.div`
         padding-top: 0px;
         padding-left: 12px;
     }
+
+    @media(min-width: 768px){
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        
+        h1{
+            padding-top: 0px;
+            margin:32px;
+        }
+
+    }
 `
 
 export const ContainerList = styled.div`
@@ -59,7 +71,10 @@ export const ContainerList = styled.div`
 
         button{
             margin-right: 12px;
+            cursor: pointer;
         }
+        
+        
     }
 
     ul{
@@ -74,9 +89,6 @@ export const ContainerList = styled.div`
 
         
         padding-bottom: 12px;
-
-    }
-    ul{
 
         button{
             display:flex;
@@ -94,6 +106,7 @@ export const ContainerList = styled.div`
         
         :hover{
             background:#343B41;
+            cursor: pointer;
         }
         
         :focus{
@@ -110,6 +123,18 @@ export const ContainerList = styled.div`
                 font-size: 14.2123px;
                 line-height: 24px;
             }
+        }
+    }
+
+    @media(min-width: 768px){
+        div{
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        ul{
+            width:60vw;
         }
     }
 `

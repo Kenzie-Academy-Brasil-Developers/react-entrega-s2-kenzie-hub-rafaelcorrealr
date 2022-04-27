@@ -2,13 +2,18 @@ import { Modal, Header, Form, DivBtn } from "./style"
 import ButtonPrimary from '../../../components/ButtonPrimary'
 import ButtonDisabled from "../../../components/ButtonDisabled"
 
-const ModalTech = () => {
+const ModalTech = (visibilityModalTech, setVisibilityModalTech) => {
+
+    const exitModal = () => {
+        setVisibilityModalTech(false)
+    }
+
     return (
-        <Modal>
+        <Modal visibilityModalTech={visibilityModalTech}>
             <div class="content">
                 <Header>
                     <h3>Tecnologia Detalhes</h3>
-                    <p>X</p>
+                    <button onClick={() => exitModal()}>X</button>
                 </Header>
                 <Form>
                     <p>Nome do projeto</p>

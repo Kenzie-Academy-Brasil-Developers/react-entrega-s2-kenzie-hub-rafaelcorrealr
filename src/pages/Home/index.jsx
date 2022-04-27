@@ -39,7 +39,15 @@ function Home(authenticated, setAuthenticated){
 
     const openModalNew = () => {
         setVisibilityModalNew(true)
+        setVisibilityModalTech(true)
     }
+
+    const openModalTech = () => {
+        setVisibilityModalTech(true)
+    }
+
+
+
 
     if(!authenticated){
         return <Redirect to='/'/>
@@ -64,21 +72,26 @@ function Home(authenticated, setAuthenticated){
 
                     <ul>
                         {listTechs.map(({title, status}) => {
-                            <button>
+                            <button onClick={() => openModalTech()}>
                                 <h3>{title}</h3>
                                 <Headline>{status}</Headline>
                             </button>
                         })}
+                            <button onClick={() => openModalTech()}>
+                                <h3>title</h3>
+                                <Headline>status</Headline>
+                            </button>
                     </ul>
                 </ContainerList>
+
                 <ModalNew
                 visibilityModalNew={visibilityModalNew}
                 setVisibilityModalNew={setVisibilityModalNew}
                 />
-                {/* <ModalTech
+                <ModalTech
                 visibilityModalTech={visibilityModalTech}
                 setVisibilityModalTech={setVisibilityModalTech}
-                /> */}
+                />
             </>
         )
     }

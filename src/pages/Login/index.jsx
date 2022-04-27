@@ -6,13 +6,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from "react-router-dom";
 
 import api from '../../sevices/api'
-import {Container, ContainerForm, Form} from './style'
+import {Container, ContainerForm} from './style'
 import Input from '../../components/Input'
 
 import ButtonDisabled from '../../components/ButtonDisabled'
 import ButtonPrimary from "../../components/ButtonPrimary";
 import Headline from "../../components/Headline/";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+import logo from '../../images/logo.png'
 
 function Login({authenticated, setAuthenticated}){
 
@@ -43,12 +45,12 @@ function Login({authenticated, setAuthenticated}){
     return (
         <Container>
             <div>
-                <h1>Kenzie Hub</h1>
+                <img src={logo} alt='logo'/>
             </div>
             
             <ContainerForm>
                 <h1>Login</h1>
-                <Form onSubmit={handleSubmit(onSubmitFunction)}>
+                <form onSubmit={handleSubmit(onSubmitFunction)}>
                     <p>Email</p>
                     <Input
                     placeholder="Email"
@@ -63,7 +65,7 @@ function Login({authenticated, setAuthenticated}){
                     name='password'/>
                     <legend>{errors.password?.message}</legend>
                     <ButtonPrimary color={false}>Entrar</ButtonPrimary>
-                </Form>
+                </form>
 
                 <Headline>Ainda não possui uma conta?</Headline>
                 <Link to={'/register'}><ButtonDisabled color={true}>Cadastre-se</ButtonDisabled></Link>

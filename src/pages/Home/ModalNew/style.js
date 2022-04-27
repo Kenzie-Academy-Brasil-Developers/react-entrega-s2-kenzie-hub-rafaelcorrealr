@@ -16,6 +16,7 @@ export const Modal = styled.div`
     background-color: #212529;
     margin: 50% auto; 
     width: 90vw; 
+    max-width: 342px;
 
     display: flex;
     flex-direction: column;
@@ -23,7 +24,13 @@ export const Modal = styled.div`
     
     box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
     border-radius: 3.20867px;
+
 }
+    @media(min-width: 768px){
+        .content{
+            margin: 10% auto;
+        }
+    }
 `
 
 export const Header = styled.div`
@@ -34,6 +41,7 @@ export const Header = styled.div`
     background: #343B41;
 
     width: 90vw;
+    max-width: 342px;
     height: 40px;
 
     box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
@@ -41,6 +49,12 @@ export const Header = styled.div`
 
     h3, p{
         padding: 0px 12px;
+    }
+
+    button{
+        background:none;
+        border:none;
+        color:#F8F9FA;
     }
 `
 
@@ -50,6 +64,7 @@ export const Form = styled.form`
     justify-content: center;
 
     width:100%;
+    max-width: 342px;
 
     p{
         padding:12px
@@ -67,6 +82,7 @@ export const Form = styled.form`
         height: 38.5px;
 
         width: 80vw;
+        max-width: 318px;
 
         
         ::placeholder{
@@ -92,8 +108,14 @@ export const Form = styled.form`
 
         /* Inside auto layout */
         width: 80vw;
+        max-width: 318px;
         height: 38.5px;
 
         color: #F8F9FA;
+    }
+
+    button{
+        margin-left:13px;
+        max-width: 318px;
     }
 `

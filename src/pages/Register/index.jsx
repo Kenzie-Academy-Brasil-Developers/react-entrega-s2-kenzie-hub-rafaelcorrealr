@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from "react-router-dom";
 
-import { Container, ContainerForm, Form, Select} from './style'
+import { Container, ContainerForm, Select} from './style'
 import Input from '../../components/Input'
 import ButtonDisabled  from '../../components/ButtonDisabled/'
 import Headline from "../../components/Headline/";
@@ -14,6 +14,7 @@ import { toast } from 'react-toastify'
 import api from "../../sevices/api";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+import logo from '../../images/logo.png'
 
 function Register(){
 
@@ -60,15 +61,15 @@ function Register(){
 
     return (
         <Container>
-            <div>
-                <h1>Kenzie Hub</h1>
+            <div className="logo">
+                <img src={logo} alt='logo'/>
                 <Link to={'/'}><ButtonDisabled color={false}>Voltar</ButtonDisabled></Link>
             </div>
 
             <ContainerForm>
                 <h1>Crie sua conta</h1>
                 <Headline bold={false}>Rápido e grátis, vamos nessa</Headline>
-                <Form onSubmit={handleSubmit(onSubmitFunction)}>
+                <form onSubmit={handleSubmit(onSubmitFunction)}>
                     <p>Nome</p>
                     <Input
                     placeholder="Nome"
@@ -103,7 +104,7 @@ function Register(){
                         <option value="Quarto módulo (Backend Avançado)">Quarto módulo</option>
                     </Select>
                     <ButtonDisabled type="submit" color={true}>Cadastrar</ButtonDisabled>
-                </Form>
+                </form>
             </ContainerForm>
         </Container>
     )

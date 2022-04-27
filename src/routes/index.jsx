@@ -25,7 +25,7 @@ function Routes(){
             </Route>
 
             <Route exact path={'/register'}>
-                <Register/>
+                <Register authenticated={authenticated}/>
             </Route>
 
             <Route path={'/home'}>

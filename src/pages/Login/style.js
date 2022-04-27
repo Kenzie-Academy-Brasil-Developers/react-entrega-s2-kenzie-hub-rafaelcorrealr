@@ -39,9 +39,16 @@ export const ContainerForm = styled.div`
 
         color: #FF577F;
     }
-`
 
-export const Form = styled.form`
-    width:100%;
+    @media(min-width: 768px){
+        overflow-y: auto;
+
+        max-width: 369px;
+
+        button, input{
+            max-width: 324px;
+            cursor: pointer;
+        }
+    }
 `
 

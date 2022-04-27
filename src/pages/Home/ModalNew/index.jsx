@@ -8,9 +8,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '../../../components/Input'
 
 import { toast } from 'react-toastify'
+import { useState, useEffect } from "react";
 
 const ModalNew = ({visibilityModalNew, setVisibilityModalNew}) => {
 
+    const [techs, setTechs] = useState([])
 
     const formSchema = yup.object().shape({
         title: yup.string().required("Nome obrigatório"),
@@ -33,6 +35,29 @@ const onSubmitFunction = (data) => {
             toast.error('Não foi possível efetuar o cadastro')
             console.log(err)})
     }
+
+    const [user] = useState(
+        JSON.parse(localStorage.getItem("@KenzieHub:user")) || ""
+      );
+      const { id } = user;
+      
+    function loadInfos() {
+        api
+          .get(`/users/${id}`)
+          .then((response) => {
+            console.log(response.data);
+    
+            const apiTechs = response.data.techs.map((tech) => ({
+              ...tech,
+            }));
+            setTechs(apiTechs);
+          })
+          .catch((err) => console.log(err));
+      }
+    
+      useEffect(() => {
+        loadInfos();
+      }, []);
 
 const exitModal = () => {
     setVisibilityModalNew(false)

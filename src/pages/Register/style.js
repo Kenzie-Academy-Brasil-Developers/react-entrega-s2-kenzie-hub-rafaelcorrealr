@@ -8,6 +8,20 @@ export const Container = styled.div`
 
     
     height: 100vh;
+
+    div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80vw;
+
+        button{
+            cursor: pointer;
+        }
+        @media(min-width: 768px){
+            max-width: 369px;
+        }
+    }
 `;
 
 export const ContainerForm = styled.div`
@@ -27,11 +41,6 @@ export const ContainerForm = styled.div`
     box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
     border-radius: 3.20867px;
 
-`
-
-export const Form = styled.form`
-    width:100%;
-
     legend{
         font-family: 'Inter';
         font-size: 12px;
@@ -43,6 +52,18 @@ export const Form = styled.form`
 
         color: #FF577F;
     }
+
+    @media(min-width: 768px){
+        overflow-y: auto;
+
+        max-width: 369px;
+
+        button, input, select{
+            max-width: 324px;
+            cursor: pointer;
+        }
+    }
+
 `
 export const Select = styled.select`
     /* Auto layout */   
