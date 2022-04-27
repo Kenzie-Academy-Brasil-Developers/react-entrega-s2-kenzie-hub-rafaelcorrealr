@@ -43,6 +43,7 @@ function Home(authenticated, setAuthenticated){
     const exitClick = () => {
         localStorage.clear()
         setAuthenticated(false)
+        history.push('/')
     }
 
     const openModalNew = (id) => {
