@@ -55,6 +55,7 @@ export const Header = styled.div`
         background:none;
         border:none;
         color:#F8F9FA;
+        cursor: pointer;
     }
 `
 
@@ -112,10 +113,12 @@ export const Form = styled.form`
         height: 38.5px;
 
         color: #F8F9FA;
+        cursor: pointer;
     }
 
     button{
         margin-left:13px;
         max-width: 318px;
+        cursor: pointer;
     }
 `

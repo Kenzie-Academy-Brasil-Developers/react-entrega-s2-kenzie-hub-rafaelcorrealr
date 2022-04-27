@@ -8,9 +8,9 @@ import { useState } from "react"
 const ModalTech = ({visibilityModalTech, setVisibilityModalTech, idAtual, setIdAtual, listTechs, setListTechs}) => {
 
     const token = JSON.parse(localStorage.getItem('@KenzieHUB:token'))
-    const [user] = useState(
-        JSON.parse(localStorage.getItem('@KenzieHUB:user'))
-    ) 
+    
+    const user = JSON.parse(localStorage.getItem('@KenzieHUB:user'))
+    
 
     const exitModal = () => {
         setVisibilityModalTech(false)
@@ -18,7 +18,6 @@ const ModalTech = ({visibilityModalTech, setVisibilityModalTech, idAtual, setIdA
     }
 
     const deleteTech = (idAtual) => {
-        console.log(user)
         api
         .delete(`/users/techs/${idAtual}`, {
             headers: {
@@ -30,11 +29,23 @@ const ModalTech = ({visibilityModalTech, setVisibilityModalTech, idAtual, setIdA
             setListTechs(listTechs.filter((item) => {
                 return item.id !== idAtual
             }))
+            setVisibilityModalTech(false)
         })
         .catch((err) => {
             toast.error('Não foi possível deletar')
             
         })
+    }
+
+    const editTech = (idAtual) => {
+        api
+        .update(`/users/techs/${idAtual}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }})
+        .then((response) => toast.success("Tecnologia atualizada!"))
+        .catch((err) => toast.error("Ops! Aconteceu algum erro."));
+       
     }
 
     return (
@@ -46,14 +57,14 @@ const ModalTech = ({visibilityModalTech, setVisibilityModalTech, idAtual, setIdA
                 </Header>
                 <Form>
                     <p>Nome do projeto</p>
-                    <input placeholder="Nome"/>
+                    <input placeholder='Noma do projeto'/>
                     <p>Status</p>
                     <select>
                         <option>Iniciante</option>
                     </select>
                 </Form>
                 <DivBtn>
-                    <ButtonPrimary color={false}>Salvar alterações</ButtonPrimary>
+                    <ButtonPrimary color={false} onClick={() => editTech(idAtual)}>Salvar alterações</ButtonPrimary>
                     <ButtonDisabled color={true} onClick={() => deleteTech(idAtual)}>Excluir</ButtonDisabled>
                 </DivBtn>
             </div>

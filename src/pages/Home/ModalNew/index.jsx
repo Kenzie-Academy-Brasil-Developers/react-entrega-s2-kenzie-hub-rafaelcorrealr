@@ -37,6 +37,7 @@ const onSubmitFunction = (data) => {
             setListTechs((state) => {
                 return [...state, response.data]
             })
+            setVisibilityModalNew(false)
         })
         .catch((err) => {
             toast.error('Não foi possível efetuar o cadastro')
@@ -47,25 +48,7 @@ const onSubmitFunction = (data) => {
     const [user] = useState(
         JSON.parse(localStorage.getItem("@KenzieHub:user")) || ""
       );
-      const { id } = user;
-      
-    // function loadInfos() {
-    //     api
-    //       .get(`/users/${id}`)
-    //       .then((response) => {
-    //         console.log(response.data);
-    
-    //         const apiTechs = response.data.techs.map((tech) => ({
-    //           ...tech,
-    //         }));
-    //         setTechs(apiTechs);
-    //       })
-    //       .catch((err) => console.log(err));
-    //   }
-    
-    //   useEffect(() => {
-    //     loadInfos();
-    //   }, []);
+
 
 const exitModal = () => {
     setVisibilityModalNew(false)
