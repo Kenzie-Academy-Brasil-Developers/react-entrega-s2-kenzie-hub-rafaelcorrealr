@@ -59,6 +59,11 @@ function Register(){
         })
     }
 
+    const token = JSON.parse(localStorage.getItem('@KenzieHUB:token'))
+
+    if(token){
+        history.push('/home')
+    }
     return (
         <Container>
             <div className="logo">

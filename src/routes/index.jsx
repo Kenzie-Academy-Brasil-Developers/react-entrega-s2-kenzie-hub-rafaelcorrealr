@@ -29,7 +29,7 @@ function Routes(){
             </Route>
 
             <Route path={'/home'}>
-                <Home authenticated={authenticated}/>
+                <Home authenticated={authenticated} setAuthenticated={setAuthenticated}/>
             </Route>
 
         </Switch>

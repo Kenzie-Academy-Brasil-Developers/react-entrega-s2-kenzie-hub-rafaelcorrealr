@@ -10,9 +10,7 @@ import Input from '../../../components/Input'
 import { toast } from 'react-toastify'
 import { useState, useEffect } from "react";
 
-const ModalNew = ({visibilityModalNew, setVisibilityModalNew}) => {
-
-    const [techs, setTechs] = useState([])
+const ModalNew = ({visibilityModalNew, setVisibilityModalNew, setListTechs}) => {
 
     const formSchema = yup.object().shape({
         title: yup.string().required("Nome obrigatório"),
@@ -22,18 +20,28 @@ const ModalNew = ({visibilityModalNew, setVisibilityModalNew}) => {
 } = useForm({
     resolver: yupResolver(formSchema)})
 
+    const [token] = useState(
+        JSON.parse(localStorage.getItem("@KenzieHUB:token")) || ""
+      );
 
 const onSubmitFunction = (data) => {
     console.log(data)
         api
-        .post('/users/techs', data)
+        .post('/users/techs', data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then((response) => {
             toast.success('Tecnologia cadastrada com sucesso')
-            console.log(response)
+            setListTechs((state) => {
+                return [...state, response.data]
+            })
         })
         .catch((err) => {
             toast.error('Não foi possível efetuar o cadastro')
-            console.log(err)})
+            
+        })
     }
 
     const [user] = useState(
@@ -41,23 +49,23 @@ const onSubmitFunction = (data) => {
       );
       const { id } = user;
       
-    function loadInfos() {
-        api
-          .get(`/users/${id}`)
-          .then((response) => {
-            console.log(response.data);
+    // function loadInfos() {
+    //     api
+    //       .get(`/users/${id}`)
+    //       .then((response) => {
+    //         console.log(response.data);
     
-            const apiTechs = response.data.techs.map((tech) => ({
-              ...tech,
-            }));
-            setTechs(apiTechs);
-          })
-          .catch((err) => console.log(err));
-      }
+    //         const apiTechs = response.data.techs.map((tech) => ({
+    //           ...tech,
+    //         }));
+    //         setTechs(apiTechs);
+    //       })
+    //       .catch((err) => console.log(err));
+    //   }
     
-      useEffect(() => {
-        loadInfos();
-      }, []);
+    //   useEffect(() => {
+    //     loadInfos();
+    //   }, []);
 
 const exitModal = () => {
     setVisibilityModalNew(false)
@@ -70,7 +78,7 @@ const exitModal = () => {
                     <h3>Cadastrar Tecnologia</h3>
                     <button onClick={() => exitModal()}>X</button>
                 </Header>
-                <Form onSubmit={() => {handleSubmit(onSubmitFunction)}}>
+                <Form onSubmit={handleSubmit(onSubmitFunction)}>
                     <p>Nome</p>
                     <Input
                     placeholder="Nome da tecnologia"

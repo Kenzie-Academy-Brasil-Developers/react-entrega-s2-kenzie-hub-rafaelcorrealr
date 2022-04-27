@@ -13,6 +13,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import logo from '../../images/logo.png'
+import { useHistory } from "react-router-dom";
+
 
 function Home(authenticated, setAuthenticated){
 
@@ -22,34 +24,41 @@ function Home(authenticated, setAuthenticated){
     const [visibilityModalNew, setVisibilityModalNew] = useState(false)
     const [visibilityModalTech, setVisibilityModalTech] = useState(false)
 
+    const [idAtual, setIdAtual] = useState('')
+
+    const [user] = useState(
+        JSON.parse(localStorage.getItem('@KenzieHUB:user'))
+    ) 
+
+    const token = JSON.parse(localStorage.getItem('@KenzieHUB:token'))
+
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem('@KenzieHUB:user'))
-        
-        if(data){
-            setListTechs(data.techs)
-            setDataUser(data)
+        if(user){
+            setListTechs(user.techs)
+            setDataUser(user)
         }
 
     }, [])
 
     const exitClick = () => {
         localStorage.clear()
-        setAuthenticated(true)
+        setAuthenticated(false)
     }
 
-    const openModalNew = () => {
+    const openModalNew = (id) => {
         setVisibilityModalNew(true)
     }
 
-    const openModalTech = () => {
+    const openModalTech = (id) => {
         setVisibilityModalTech(true)
+        setIdAtual(id)
     }
 
 
-
-
-    if(!authenticated){
-        return <Redirect to='/'/>
+    const history = useHistory()
+    console.log(authenticated)
+    if(!token){
+        history.push('/')
     }else{
         return (
             <>
@@ -70,11 +79,12 @@ function Home(authenticated, setAuthenticated){
                     </div>
 
                     <ul>
-                        {listTechs.map(({title, status}) => {
-                            <button onClick={() => openModalTech()}>
+                        {listTechs.map(({title, status, id}) => {
+                            return <button onClick={() => openModalTech(id)}>
                                 <h3>{title}</h3>
                                 <Headline>{status}</Headline>
                             </button>
+                            
                         })}
                             {/* {exemplo} */}
                             <button onClick={() => openModalTech()}>
@@ -87,11 +97,17 @@ function Home(authenticated, setAuthenticated){
                 <ModalNew
                 visibilityModalNew={visibilityModalNew}
                 setVisibilityModalNew={setVisibilityModalNew}
+                setListTechs={setListTechs}
+                listTechs={listTechs}
                 />
-                <ModalTech
-                visibilityModalTech={visibilityModalTech}
-                setVisibilityModalTech={setVisibilityModalTech}
-                />
+                  <ModalTech
+                    visibilityModalTech={visibilityModalTech}
+                    setVisibilityModalTech={setVisibilityModalTech}
+                    idAtual={idAtual}
+                    setIdAtual={setIdAtual}
+                    listTechs={listTechs}
+                    setListTechs={setListTechs}
+                                    />
             </>
         )
     }
