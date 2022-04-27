@@ -3,18 +3,24 @@ import { Navbar, ContainerUser, ContainerList } from './style'
 
 import Headline from "../../components/Headline";
 import ButtonDisabled from '../../components/ButtonDisabled'
+
 import ModalNew from "./ModalNew";
+import ModalTech from "./ModalTech";
 
 import api from "../../sevices/api";
-import ModalTech from "./ModalTech";
 import { Redirect } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+
+import logo from '../../images/logo.png'
 
 function Home(authenticated, setAuthenticated){
 
     const [listTechs, setListTechs] = useState([])
     const [dataUser, setDataUser] = useState({})
+
+    const [visibilityModalNew, setVisibilityModalNew] = useState(false)
+    const [visibilityModalTech, setVisibilityModalTech] = useState(false)
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem('@KenzieHUB:user'))
@@ -27,11 +33,12 @@ function Home(authenticated, setAuthenticated){
     }, [])
 
     const exitClick = () => {
-
+        localStorage.clear()
+        setAuthenticated(true)
     }
 
     const openModalNew = () => {
-
+        setVisibilityModalNew(true)
     }
 
     if(!authenticated){
@@ -40,13 +47,13 @@ function Home(authenticated, setAuthenticated){
         return (
             <>
                 <Navbar>
-                    <h1>HOME</h1>
-                    <button>Sair</button>
+                    <img src={logo} alt='logo'/>
+                    <ButtonDisabled color={false} onClick={() => exitClick()}>Sair</ButtonDisabled>
                 </Navbar>
 
                 <ContainerUser>
                     <h1>{dataUser.name}</h1>
-                    <p>Sua matéria aqui</p>
+                    <Headline>{dataUser.course_module}</Headline>
                 </ContainerUser>
 
                 <ContainerList>
@@ -58,22 +65,20 @@ function Home(authenticated, setAuthenticated){
                     <ul>
                         {listTechs.map(({title, status}) => {
                             <button>
-                            <h3>{title}</h3>
-                            <Headline>{status}</Headline>
-                        </button>
+                                <h3>{title}</h3>
+                                <Headline>{status}</Headline>
+                            </button>
                         })}
-                        <button>
-                            <h3>React</h3>
-                            <Headline>Intermediário</Headline>
-                        </button>
-                        <button>
-                            <h3>React</h3>
-                            <Headline>Intermediário</Headline>
-                        </button>
                     </ul>
                 </ContainerList>
-                {/* <ModalNew/> */}
-                {/* <ModalTech/> */}
+                <ModalNew
+                visibilityModalNew={visibilityModalNew}
+                setVisibilityModalNew={setVisibilityModalNew}
+                />
+                {/* <ModalTech
+                visibilityModalTech={visibilityModalTech}
+                setVisibilityModalTech={setVisibilityModalTech}
+                /> */}
             </>
         )
     }

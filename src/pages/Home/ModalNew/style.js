@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Modal = styled.div`
-    
+    visibility: ${(props) => props.visibilityModalNew ? 'visible' : 'hidden'};
+
     position: fixed;
     z-index: 1; 
     left: 0;
