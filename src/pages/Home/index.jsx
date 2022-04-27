@@ -56,7 +56,6 @@ function Home(authenticated, setAuthenticated){
 
 
     const history = useHistory()
-    console.log(authenticated)
     if(!token){
         history.push('/')
     }else{
@@ -64,7 +63,7 @@ function Home(authenticated, setAuthenticated){
             <>
                 <Navbar>
                     <img src={logo} alt='logo'/>
-                    <ButtonDisabled color={false} onClick={() => exitClick()}>Sair</ButtonDisabled>
+                    <ButtonDisabled color={false} onClick={exitClick}>Sair</ButtonDisabled>
                 </Navbar>
 
                 <ContainerUser>
